@@ -1,0 +1,6 @@
+Targets:
+    own-ros-image    Raspberry Pi 5 image with ROS 2 Jazzy and the counter_demo nodes
+    own-image        the same image without ROS
+
+The secrets file is set by RPI5_SECRETS in conf/local.conf, see secrets.env.example.
+For the public demo image: bitbake -R /project/release.conf own-ros-image
