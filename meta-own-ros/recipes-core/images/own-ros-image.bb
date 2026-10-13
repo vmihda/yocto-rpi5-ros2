@@ -8,4 +8,5 @@ IMAGE_INSTALL += " \
     demo-nodes-cpp \
     counter-demo \
     ros-env \
+    dev-shm \
 "
