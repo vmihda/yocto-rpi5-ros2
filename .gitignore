@@ -2,3 +2,12 @@
 ros2_ws/build/
 ros2_ws/install/
 ros2_ws/log/
+
+# Built images: personal ones contain the Wi-Fi PSK and root password hash
+*.wic
+*.wic.bz2
+*.wic.bmap
+release/
+
+# Build-time secrets; keep them outside the repo (see secrets.env.example)
+*.env
