@@ -25,7 +25,7 @@ Contents
 
   recipes-core/init-ifupdown/
       /etc/network/interfaces that brings up wlan0 at boot with DHCP and
-      Wi-Fi power save off.
+      Wi-Fi power save off, and eth0 with DHCP when a cable is plugged in.
 
   recipes-core/base-files/
       Hostname rpi5-hw.
@@ -33,6 +33,4 @@ Contents
   recipes-core/ssh-authorized-keys/
       Public key allowed to log in as root (/home/root/.ssh/authorized_keys).
 
-  conf/templates/default/
-      local.conf and bblayers.conf used for this build, created with
-      "bitbake-layers save-build-conf".
+The build configuration lives in ../meta-own-ros/conf/templates/default.

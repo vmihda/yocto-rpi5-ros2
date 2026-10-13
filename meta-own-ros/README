@@ -1,41 +1,43 @@
-This README file contains information on the contents of the meta-own-ros layer.
-
-Please see the corresponding sections below for details.
-
-Dependencies
+meta-own-ros
 ============
 
-  URI: <first dependency>
-  branch: <branch name>
+ROS 2 Jazzy layer for the Raspberry Pi 5 image from meta-own. Adds the
+counter_demo nodes from ../ros2_ws and builds own-ros-image. See ../README.md
+for build instructions.
 
-  URI: <second dependency>
-  branch: <branch name>
+Dependencies
+------------
 
-  .
-  .
-  .
+  meta-own (this repository)
 
-Patches
-=======
+  URI: https://github.com/ros/meta-ros
+  layers: meta-ros-common, meta-ros2, meta-ros2-jazzy
+  branch: scarthgap
 
-Please submit any patches against the meta-own-ros layer to the xxxx mailing list (xxxx@zzzz.org)
-and cc: the maintainer:
+  URI: https://github.com/openembedded/meta-openembedded
+  layers: meta-oe, meta-python
+  branch: scarthgap
 
-Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
+Contents
+--------
 
-Table of Contents
-=================
+  recipes-core/images/own-ros-image.bb
+      own-image from meta-own plus ros-core, demo-nodes-cpp, counter-demo,
+      ros-env and dev-shm.
 
-  I. Adding the meta-own-ros layer to your build
- II. Misc
+  recipes-ros/counter-demo/
+      Builds the ROS 2 package in ../ros2_ws/src/counter_demo with
+      ros_ament_cmake. The sources come from this repository through
+      file://, so the host (colcon) and the board build the same code.
 
+  recipes-ros/ros-env/
+      /etc/profile.d/ros2.sh: sources /opt/ros/jazzy/setup.sh in login shells.
 
-I. Adding the meta-own-ros layer to your build
-=================================================
+  recipes-core/dev-shm/
+      Init script at S05 that mounts tmpfs on /dev/shm for Fast DDS shared
+      memory. sysvinit in poky doesn't mount it, and an fstab entry fails
+      because mountall (S03) runs before udev (S04) creates the directory.
 
-Run 'bitbake-layers add-layer meta-own-ros'
-
-II. Misc
-========
-
---- replace with specific information about the meta-own-ros layer ---
+  conf/templates/default/
+      local.conf and bblayers.conf used for this build, created with
+      "bitbake-layers save-build-conf".
